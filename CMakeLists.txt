@@ -25,9 +25,15 @@ elseif("${CMAKE_C_COMPILER_ID}" STREQUAL "Clang")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fcolor-diagnostics -Wno-pointer-bool-conversion -Wno-parentheses-equality")
 endif()
 
+add_library(commlib 
+    src/urwlib.c
+    src/umod.c
+    src/getpname.c
+    src/kfifo.c
+    src/btsnoop.c)
+target_link_libraries(commlib)
+
 
 set(CMAKE_BUILD_WITH_INSTALL_RPATH true)
 install(DIRECTORY include/ DESTINATION include)
-
-
-add_subdirectory(src)
+install(TARGETS commlib DESTINATION lib) 

@@ -1,11 +1,20 @@
 #define LOG_TAG "ulib"
 
 #if defined(__QNX__)
+
 # include <unix.h>
-#else
+
+#else /* __QNX__ */
+
+#if !defined(_XOPEN_SOURCE)
 # define _XOPEN_SOURCE
-#define _GNU_SOURCE
 #endif
+
+#if !defined(_GNU_SOURCE)
+# define _GNU_SOURCE
+#endif
+
+#endif /* __QNX__ */
 
 #include <unistd.h>
 #include <stdio.h>
